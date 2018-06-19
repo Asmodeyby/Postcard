@@ -1,0 +1,17 @@
+{
+    "name": "Asmodeyby/Postcard",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Asmodey",
+            "email": "Asmodey2007@tut.by"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Asmodeyby\\Postcard\\": "src"
+        }
+    }
+}
