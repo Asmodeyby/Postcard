@@ -1,1 +1,1 @@
-# social-network-postcard
+# Package in development
