@@ -40,7 +40,7 @@ class Postcard
     }
 
     public function addLayout(AbstractLayout $layout) {
-        $layout->init($this->_width, $this->_height);
+        $layout->init($this);
         $this->_layouts[] = $layout;
     }
 
@@ -49,9 +49,17 @@ class Postcard
      */
     public function render() {
         foreach($this->_layouts as $layout) {
-            $this->_canvas->fill($layout->render());
+            $this->_canvas->insert($layout->render(), $layout->getLayerPosition(), $layout->getLayerX(), $layout->getLayerY());
         }
         return $this->_canvas;
+    }
+
+    public function getWidth() {
+        return $this->_width;
+    }
+
+    public function getHeight() {
+        return $this->_height;
     }
 
     /**
@@ -60,54 +68,6 @@ class Postcard
      * @return Postcard
      */
     public static function make($width, $height) {
-
         return new self($width, $height);
-
-        /*
-
-        // create an image manager instance with favored driver
-        $manager = new ImageManager(array('driver' => 'gd'));
-
-
-        $i = $manager->make($path);
-
-        $i->fit(1076, 480);
-
-        $i->greyscale();
-        $i->fill('rgba(0, 0, 0, 0.5)');
-
-
-        $i->text("Аниме спасет мир Аниме спасет мир Аниме спасет мир", 30, 30, function($font) {
-            $font->file(Storage::path("OpenSans-SemiBold.ttf"));
-            $font->size(64);
-            $font->color('#fff');
-            $font->align('left');
-            $font->valign('top');
-        });
-
-
-        $i->text("#АНИМЕ", 20, 480 - 30, function(AbstractFont $font) {
-            $font->file(Storage::path("OpenSans-SemiBold.ttf"));
-            $font->size(32);
-            $font->color('#fff');
-            $font->align('left');
-            $font->valign('bottom');
-        });
-
-
-
-
-        $logo_image =  $manager->make($logo_path);
-        $logo_image->resize(64,64);
-
-        $i->insert($logo_image, "bottom-right", 30, 30);
-
-
-
-
-        return $i;
-
-        */
-
     }
 }

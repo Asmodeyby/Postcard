@@ -10,6 +10,7 @@ namespace Asmodeyby\Postcard\Layout;
 
 
 use Asmodeyby\Postcard\AbstractLayout;
+use Asmodeyby\Postcard\Postcard;
 use Intervention\Image\Constraint;
 use Intervention\Image\ImageManager;
 use \Illuminate\Support\Facades\File;
@@ -43,9 +44,9 @@ class LinearGradientLayout extends BaseLayout implements AbstractLayout
         return $this->_canvas;
     }
 
-    public function init($width, $height)
+    public function init(Postcard $postcard)
     {
-        parent::init($width, $height);
+        parent::init($postcard);
 
         $imagick = new \Imagick();
         $imagick->newPseudoImage(abs($this->_x0 - $this->_x1),abs($this->_y0 - $this->_y1),"gradient:{$this->_color0}-{$this->_color1}");

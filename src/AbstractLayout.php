@@ -8,10 +8,12 @@
 
 namespace Asmodeyby\Postcard;
 
+use Asmodeyby\Postcard\Postcard;
+
 
 interface AbstractLayout
 {
     public function render();
 
-    public function init($width, $height);
+    public function init(Postcard $postcard);
 }
